@@ -1,0 +1,1 @@
+This is a site where you can guess the riddles of other users and even add your own.

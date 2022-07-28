@@ -1,0 +1,78 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+body {
+  background-image: linear-gradient(DodgerBlue, yellow);
+}
+
+.block {
+  padding: 10px 10px;
+  width:1200px;
+  height:130px;
+  border:2px solid #000;
+  background-color: lightGrey;
+  position: relative;
+  margin: 15px;
+}
+
+.riddle {
+  padding: 1px 5px;
+  font-size: 18px;
+  width: 1190px;
+  height: 77px;
+  background-color: white;
+  border:2px solid #000;
+  position: relative;
+}
+
+
+.answer {
+  padding-top: 14px;
+  position: relative;
+}
+
+.answer input {
+  border: 2px solid Black;
+  padding: 10px 5px;
+  width: 200px;
+  height: 4px;
+}
+
+button {
+  width: 100px;
+  height: 27px;
+  font-size: 13px;
+  text-align: center;
+  border-radius: 2px;
+  border: 2px solid black;
+  cursor: pointer;
+  margin: 2px;
+}
+
+h1 {
+  margin: 20px;
+}
+
+button:active {
+  transform: translateY(2px);
+}
+
+::-webkit-scrollbar {
+  width: 13px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
