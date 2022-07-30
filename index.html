@@ -5,6 +5,13 @@
     <title>Riddles</title>
     <link href = 'riddles.css' rel = 'stylesheet'>
     <script type = "text/javascript" src = "riddles.js"></script>
+    <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
+    <link rel="manifest" href="icons/site.webmanifest">
+    <link rel="mask-icon" href="icons/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
 </head>
 <body>
     <div class = "container">
@@ -13,7 +20,7 @@
                 <div class = "riddle">Прийшла кума із довгим віником на бесіду із нашим півником,
                     схопила півня на обід та й замела мітлою слід.</div>
                 <div class = "answer">
-                    <input type = 'text' name = "answer">
+                    <input type = 'text' name = "answer" id = "false" placeholder = "Весна">
                     <button>Перевірити</button>
                 </div>
             </div>
@@ -31,7 +38,7 @@
                     неначе сніжинки; Дивуються дуже дорослі і діти: Де ж міг раптом взятися сніг серед літа?
                 </div>
                 <div class = "answer">
-                    <input type = 'text' name = "answer">
+                    <input type = 'text' name = "answer" id = "true" placeholder = "Тополиний пух">
                     <button>Перевірити</button>
                 </div>
             </div>
@@ -39,7 +46,7 @@
             <h1>Додайте свою загадку:</h1>
 
             <div class = "block">
-                <textarea cols = "30" rows = "10" class = "riddle"></textarea>
+                <textarea name = "riddle" class = "riddle"></textarea>
                 <div class = "answer">
                     <input type = 'text' name = "answer">
                     <button>Додати</button>
