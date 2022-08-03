@@ -1,6 +1,6 @@
 .container {
-  width:1250px;
-  margin:0 auto;
+  width: 1250px;
+  margin: 0 auto;
 }
 
 body {
@@ -70,8 +70,8 @@ button {
 }
 
 button:hover {
-  background-color: Beige;
-  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  background-color: beige;
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
 
 h1 {
