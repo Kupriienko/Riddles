@@ -1,25 +1,20 @@
 .container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
+  width:1250px;
+  margin:0 auto;
 }
 
 body {
-  background-image: linear-gradient(DodgerBlue, yellow);
-}
-
-body,
-html {
-  height: 100%;
+  margin: 0px;
+  background: linear-gradient(dodgerblue, yellow);
+  background-attachment: fixed;
 }
 
 .block {
   padding: 10px 10px;
-  width:1200px;
-  height:130px;
-  border:2px solid #000;
-  background-color: lightGrey;
+  width: 1200px;
+  min-height: 130px;
+  border: 2px solid #000;
+  background-color: lightgrey;
   position: relative;
   margin: 15px;
 }
@@ -28,14 +23,14 @@ html {
   padding: 1px 5px;
   font-size: 18px;
   width: 1190px;
-  height: 77px;
+  min-height: 77px;
   background-color: white;
-  border:2px solid #000;
+  border: 2px solid #000;
   position: relative;
 }
 
 textarea {
-    display: block;
+  display: block;
 }
 
 .answer {
@@ -44,22 +39,23 @@ textarea {
 }
 
 .answer input {
-  border: 2px solid Black;
+  border: 2px solid black;
   padding: 10px 5px;
   width: 200px;
   height: 4px;
 }
 
-#false::placeholder {
-    font-size: 15px;
-    font-weight: bold;
-    color: red;
+.answer-false {
+  font-size: 15px;
+  font-weight: bold;
+  color: red;
 }
 
-#true::placeholder {
-    font-size: 15px;
-    font-weight: bold;
-    color: green;
+.answer-true {
+  font-size: 15px;
+  font-weight: bold;
+  color: green;
+  pointer-events: none;
 }
 
 button {
