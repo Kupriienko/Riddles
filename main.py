@@ -1,9 +1,5 @@
 from flask import Flask, jsonify, request, Response
 import sqlite3
-from localStoragePy import localStoragePy
-import ast
-
-localStorage = localStoragePy('riddleStorage', 'json')
 
 app = Flask(__name__)
 
@@ -15,20 +11,15 @@ def riddles_amount() -> int:
     return cur.execute("select id from riddles order by id desc LIMIT 1;").fetchone()[0]
 
 
-def answer_data(i: int) -> dict:
-    try:
-        return ast.literal_eval(localStorage.getItem("answer_data" + str(i)))
-    except:
-        return {"answer": "", "correct": ""}
+def get_riddle(i) -> str:
+    return cur.execute("select riddle from riddles where id = ?", (i,)).fetchall()[0][0]
 
 
 def block_in_str(i: int) -> str:
-    answer_d = answer_data(i)
-    riddle = cur.execute("select riddle from riddles where id = ?", (i,)).fetchall()
     return f'''            <div class="block">
-            <div class="riddle">{riddle[0][0]}</div>
+            <div class="riddle">{get_riddle(i)}</div>
             <div class="answer">
-                <input type="text" name="answer" class="{answer_d["correct"]}" value="{answer_d["answer"]}" >
+                <input type="text" name="answer"" >
                 <button>Перевірити</button>
             </div>
         </div>\n'''
@@ -46,12 +37,6 @@ def initial_content(r_amount: int) -> None:
         f.write(contents)
 
 
-def answer_correct(correct: str, int_correct: int, data: dict, answer_d: str):
-    data["correct"] = correct
-    localStorage.setItem(answer_d, str(data))
-    return {"correct": int_correct}
-
-
 @app.route('/addRiddle', methods=['POST'])
 def add_riddle() -> Response:
     data = request.get_json()
@@ -66,14 +51,13 @@ def add_riddle() -> Response:
 @app.route('/getAnswer', methods=['GET'])
 def get_answer() -> dict[str, int]:
     data = request.get_json()
-    answer_d = "answer_data"+str(data[0])
     answer = cur.execute("select id, solution from riddles")
     for i in answer.fetchall():
         if i[0] == data["id"]:
             if i[1] == data["answer"]:
-                return answer_correct("answer-true", 1, data, answer_d)
+                return {"correct": 1}
             else:
-                return answer_correct("answer-false", 0, data, answer_d)
+                return {"correct": 2}
 
 
 @app.route('/')
