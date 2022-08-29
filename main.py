@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, Response
+from flask import Flask, jsonify, request, Response, abort
 import sqlite3
 
 app = Flask(__name__)
@@ -19,8 +19,11 @@ def add_riddle() -> tuple[str, str]:
 @app.route('/getAnswer', methods=['GET'])
 def get_answer() -> dict[str, bool]:
     data = request.get_json()
-    answer = cur.execute("select solution from riddles where id = ?", (data["id"],)).fetchone()[0]
-    return {"correct": answer == data["answer"]}
+    answer = cur.execute("select solution from riddles where id = ?", (data["id"],)).fetchall()
+    if len(answer) == 1:
+        return {"correct": answer[0][0] == data["answer"]}
+    else:
+        abort(404)
 
 
 @app.route('/')
@@ -29,5 +32,6 @@ def index() -> str:
     riddle_contents = open("riddle.html", "r").read()
     riddles = ""
     for i in cur.execute("select riddle from riddles").fetchall():
-        riddles += riddle_contents.replace("(riddle)", i[0]) + "\n"
-    return "".join(template_contents.replace("(riddles)", riddles))
+        riddles += riddle_contents.replace("{riddle}", i[0]) + "\n"
+    return "".join(template_contents.replace("{riddles}", riddles))
+
