@@ -1,3 +1,5 @@
+from typing import Tuple, Any
+
 from flask import Flask, jsonify, request, Response
 import sqlite3
 
@@ -8,9 +10,9 @@ cur = con.cursor()
 
 
 @app.route('/addRiddle', methods=['POST'])
-def add_riddle() -> list[str, str]:
+def add_riddle() -> tuple[str, str]:
     data = request.get_json()
-    riddle = [data["riddle"], data["answer"]]
+    riddle = data["riddle"], data["answer"]
     cur.execute("insert into riddles (riddle, solution) values (?, ?)", riddle)
     con.commit()
     return riddle
