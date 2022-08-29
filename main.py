@@ -1,5 +1,3 @@
-from typing import Tuple, Any
-
 from flask import Flask, jsonify, request, Response
 import sqlite3
 
