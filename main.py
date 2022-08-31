@@ -21,7 +21,7 @@ def add_riddle() -> tuple[str, str]:
 @app.route('/getAnswer', methods=['GET'])
 def get_answer() -> dict[str, bool]:
     data = request.get_json()
-    if type(data) != dict or data.keys() != {'riddle', "id"}:
+    if type(data) != dict or data.keys() != {'answer', 'id'}:
         abort(400)
     answer = cur.execute('select solution from riddles where id = ?', (data['id'],)).fetchall()
     if len(answer) == 1:
