@@ -7,9 +7,10 @@ async function verify(id) {
         },
         body: JSON.stringify({
             answer: answer.value,
-            id: id.toString(),
+            id: id,
         }),
     });
     const response = await initialResponse.json();
-    response['correct'] ? answer.classList.add('answer-true'): answer.classList.add('answer-false');
+    let selector = response['correct'] ? 'answer-true': 'answer-false';
+    answer.classList.add(selector)
 }
