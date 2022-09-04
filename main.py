@@ -18,7 +18,7 @@ def add_riddle() -> tuple[str, str]:
     return riddle
 
 
-@app.route('/getAnswer', methods=['GET'])
+@app.route('/getAnswer', methods=['POST'])
 def get_answer() -> dict[str, bool]:
     data = request.get_json()
     if type(data) != dict or (data.keys() != {'answer', 'id'} or not data['id'].isnumeric()):
@@ -32,9 +32,9 @@ def get_answer() -> dict[str, bool]:
 
 @app.route('/')
 def index() -> str:
-    template_contents = open('index.html', 'r').read()
-    riddle_contents = open('riddle.html', 'r').read()
+    index_template = open('index.html', 'r', encoding='utf-8').read()
+    riddle_template = open('riddle.html', 'r', encoding='utf-8').read()
     riddles = ''
-    for i in cur.execute('select riddle from riddles').fetchall():
-        riddles += riddle_contents.replace('{riddle}', i[0]) + '\n'
-    return ''.join(template_contents.replace('{riddles}', riddles))
+    for i in cur.execute('select id, riddle from riddles').fetchall():
+        riddles += riddle_template.replace('{id}', str(i[0])).replace('{riddle}', i[1]) + '\n'
+    return ''.join(index_template.replace('{riddles}', riddles))

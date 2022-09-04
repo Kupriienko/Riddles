@@ -1,22 +1,15 @@
-function getRiddle() {
-            return [
-                document.getElementById('riddle').value,
-                document.getElementById('answer').value,
-            ];
-        }
-
-async function addRiddle() {
-    const [riddle, answer] = getRiddle();
-    const initialResponse = await fetch(`/addRiddle`, {
+async function verify(id) {
+    const answer = document.getElementById(`input-${id}`);
+    const initialResponse = await fetch(`/getAnswer`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            riddle: riddle,
-            answer: answer
+            answer: answer.value,
+            id: id.toString(),
         }),
     });
     const response = await initialResponse.json();
-
+    response['correct'] ? answer.classList.add('answer-true'): answer.classList.add('answer-false');
 }
