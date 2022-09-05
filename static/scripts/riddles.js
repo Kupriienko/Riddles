@@ -1,6 +1,6 @@
 async function verify(id) {
     const answer = document.getElementById(`input-${id}`);
-    const initialResponse = await fetch(`/getAnswer?`  + new URLSearchParams({
+    const initialResponse = await fetch(`/verifyAnswer?`  + new URLSearchParams({
         id,
         answer: answer.value,
     }), {

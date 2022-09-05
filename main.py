@@ -18,7 +18,7 @@ def add_riddle() -> tuple[str, str]:
     return riddle
 
 
-@app.route('/getAnswer', methods=['GET'])
+@app.route('/verifyAnswer', methods=['GET'])
 def get_answer() -> dict[str, bool]:
     data = request.args.to_dict()
     if type(data) != dict or (data.keys() != {'answer', 'id'} or not data['id'].isnumeric()):
