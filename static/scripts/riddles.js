@@ -1,16 +1,14 @@
 async function verify(id) {
     const answer = document.getElementById(`input-${id}`);
-    const initialResponse = await fetch(`/getAnswer`, {
-        method: 'POST',
+    const initialResponse = await fetch(`/getAnswer?`  + new URLSearchParams({
+        id,
+        answer: answer.value,
+    }), {
+        method: 'GET',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-            answer: answer.value,
-            id: id,
-        }),
     });
     const response = await initialResponse.json();
-    let selector = response['correct'] ? 'answer-true': 'answer-false';
-    answer.classList.add(selector)
+    answer.classList.add(`answer-${response['correct']}`)
 }
