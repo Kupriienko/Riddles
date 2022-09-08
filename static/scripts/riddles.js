@@ -1,3 +1,10 @@
+window.addEventListener('DOMContentLoaded', (event) => {
+    const buttons = document.getElementsByTagName("button");
+    for (const button of buttons) {
+        button.addEventListener('click', () => verify(button.id));
+    }
+});
+
 async function verify(id) {
     const answer = document.getElementById(`input-${id}`);
     const initialResponse = await fetch(`/verifyAnswer?`  + new URLSearchParams({
