@@ -1,6 +1,5 @@
 window.addEventListener('DOMContentLoaded', (event) => {
-    const buttons = document.getElementsByTagName("button");
-    for (const button of buttons) {
+    for (const button of document.getElementsByTagName('button')) {
         button.addEventListener('click', () => verify(button.id));
     }
 });
