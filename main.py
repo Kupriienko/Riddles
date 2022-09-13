@@ -8,14 +8,14 @@ cur = con.cursor()
 
 
 @app.route('/addRiddle', methods=['POST'])
-def add_riddle() -> tuple[str, str]:
+def add_riddle() -> str:
     data = request.get_json()
     if type(data) != dict or data.keys() != {'riddle', 'answer'}:
         abort(400)
     riddle = data['riddle'], data['answer']
     cur.execute('insert into riddles (riddle, solution) values (?, ?)', riddle)
     con.commit()
-    return riddle
+    return 'true'
 
 
 @app.route('/verifyAnswer', methods=['GET'])

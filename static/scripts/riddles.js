@@ -1,14 +1,13 @@
 window.addEventListener('DOMContentLoaded', async (event) => {
-    for (let id = 1; id < document.getElementsByTagName('button').length; id++) {
-        const userAnswer = JSON.parse(localStorage.getItem(`userAnswer-${id}`))
-        if (userAnswer !== null) {
-            const answer = document.getElementById(`input-${id}`);
-            answer.value = userAnswer[1];
-            answer.classList.add(`answer-${userAnswer[2]}`);
-        }
+    for (let [key, value] of Object.entries(localStorage)) {
+        const data = JSON.parse(value);
+        const answer = document.getElementById(`input-${data[0]}`);
+        answer.value = data[1];
+        answer.classList.add(`answer-${data[2]}`);
     }
     for (const button of document.getElementsByTagName('button')) {
-        button.addEventListener('click', () => verify(button.id));
+        button.id !== 'add' ? button.addEventListener('click', () => verify(button.id)):
+            button.addEventListener('click', addRiddle);
     }
 });
 
@@ -24,6 +23,51 @@ async function verify(id) {
         },
     });
     const response = await initialResponse.json();
-    answer.classList.add(`answer-${response['correct']}`)
-    localStorage.setItem(`userAnswer-${id}`, JSON.stringify([id, answer.value, response['correct']]))
+    answer.classList.add(`answer-${response['correct']}`);
+    localStorage.setItem(`userAnswer-${id}`, JSON.stringify([id, answer.value, response['correct']]));
+}
+
+function newData() {
+    return [
+        document.getElementById('newRiddle').value,
+        document.getElementById('newAnswer').value,
+    ];
+}
+
+async function addRiddle() {
+    const [riddle, answer] = newData();
+    const initialResponse = await fetch(`/addRiddle`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            riddle,
+            answer,
+        }),
+    });
+    let riddles = document.getElementById("riddles");
+    let block = document.createElement("div");
+    block.className = "block";
+    let riddleElement = document.createElement("div");
+    riddleElement.className = "riddle";
+    riddleElement.innerHTML = riddle;
+    let answerElement = document.createElement("div");
+    answerElement.className = "answer";
+    let inputElement = document.createElement("input");
+    inputElement.type = "text";
+    const buttons = document.getElementsByTagName('button');
+    console.log(buttons)
+    const newId = parseInt(buttons.item(buttons.length-2).id)+1;
+    console.log(newId);
+    inputElement.id = `input-${newId}`;
+    let buttonElement = document.createElement("button");
+    buttonElement.id = `${newId}`;
+    buttonElement.innerHTML = "Перевірити";
+    riddles.prepend(block);
+    block.appendChild(riddleElement);
+    block.appendChild(answerElement);
+    answerElement.appendChild(inputElement);
+    answerElement.appendChild(buttonElement);
+    buttonElement.addEventListener('click', () => verify(buttonElement.id));
 }

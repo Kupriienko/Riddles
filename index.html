@@ -15,14 +15,14 @@
 </head>
 <body>
     <div class="container">
-        <div class="riddles">
+        <div class="riddles" id="riddles">
             {riddles}
             <h1>Додайте свою загадку:</h1>
             <div class="block">
-                <textarea name="riddle" class="riddle"></textarea>
+                <textarea name="riddle" class="riddle" id="newRiddle"></textarea>
                 <div class="answer">
-                    <input type="text" name="answer">
-                    <button>Додати</button>
+                    <input type="text" name="answer" id="newAnswer">
+                    <button id="add">Додати</button>
                 </div>
             </div>
         </div>
