@@ -12,7 +12,7 @@ window.addEventListener('DOMContentLoaded', async (event) => {
 
 async function verify(id) {
     const answer = document.getElementById(`input-${id}`);
-    const initialResponse = await fetch(`/verifyAnswer?`  + new URLSearchParams({
+    const initialResponse = await fetch('/verifyAnswer?'  + new URLSearchParams({
         id,
         answer: answer.value,
     }), {
@@ -35,7 +35,7 @@ function newData() {
 
 async function addRiddle() {
     const [riddle, answer] = newData();
-    const initialResponse = await fetch(`/addRiddle`, {
+    const initialResponse = await fetch('/addRiddle', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -45,22 +45,22 @@ async function addRiddle() {
             answer,
         }),
     });
-    let riddles = document.getElementById("riddles");
-    let block = document.createElement("div");
-    block.className = "block";
-    let riddleElement = document.createElement("div");
-    riddleElement.className = "riddle";
+    let riddles = document.getElementById('riddles');
+    let block = document.createElement('div');
+    block.className = 'block';
+    let riddleElement = document.createElement('div');
+    riddleElement.className = 'riddle';
     riddleElement.innerHTML = riddle;
-    let answerElement = document.createElement("div");
-    answerElement.className = "answer";
-    let inputElement = document.createElement("input");
-    inputElement.type = "text";
+    let answerElement = document.createElement('div');
+    answerElement.className = 'answer';
+    let inputElement = document.createElement('input');
+    inputElement.type = 'text';
     const buttons = document.getElementsByTagName('button');
     const newId = parseInt(buttons.item(buttons.length-2).id)+1;
     inputElement.id = `input-${newId}`;
-    let buttonElement = document.createElement("button");
+    let buttonElement = document.createElement('button');
     buttonElement.id = `${newId}`;
-    buttonElement.innerHTML = "Перевірити";
+    buttonElement.innerHTML = 'Перевірити';
     riddles.prepend(block);
     block.appendChild(riddleElement);
     block.appendChild(answerElement);
