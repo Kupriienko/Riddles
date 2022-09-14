@@ -1,5 +1,5 @@
 window.addEventListener('DOMContentLoaded', async (event) => {
-    for (let [key, value] of Object.entries(localStorage)) {
+    for (const [key, value] of Object.entries(localStorage)) {
         const data = JSON.parse(value);
         const answer = document.getElementById(`input-${data[0]}`);
         answer.value = data[1];
