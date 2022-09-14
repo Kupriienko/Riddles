@@ -6,8 +6,8 @@ window.addEventListener('DOMContentLoaded', async (event) => {
         answer.classList.add(`answer-${data[2]}`);
     }
     for (const button of document.getElementsByTagName('button')) {
-        button.id !== 'add' ? button.addEventListener('click', () => verify(button.id)):
-            button.addEventListener('click', addRiddle);
+        const func = button.id !== 'add' ? () => verify(button.id): addRiddle;
+        button.addEventListener('click', func);
     }
 });
 
@@ -57,9 +57,7 @@ async function addRiddle() {
     let inputElement = document.createElement("input");
     inputElement.type = "text";
     const buttons = document.getElementsByTagName('button');
-    console.log(buttons)
     const newId = parseInt(buttons.item(buttons.length-2).id)+1;
-    console.log(newId);
     inputElement.id = `input-${newId}`;
     let buttonElement = document.createElement("button");
     buttonElement.id = `${newId}`;
