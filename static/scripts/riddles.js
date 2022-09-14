@@ -26,15 +26,11 @@ async function verify(id) {
     localStorage.setItem(`userAnswer-${id}`, JSON.stringify([id, answer.value, response['correct']]));
 }
 
-function newData() {
-    return [
-        document.getElementById('newRiddle').value,
-        document.getElementById('newAnswer').value,
-    ];
-}
+
 
 async function addRiddle() {
-    const [riddle, answer] = newData();
+    const riddle = document.getElementById('newRiddle').value;
+    const answer = document.getElementById('newAnswer').value;
     const initialResponse = await fetch('/addRiddle', {
         method: 'POST',
         headers: {
