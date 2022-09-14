@@ -45,20 +45,20 @@ async function addRiddle() {
             answer,
         }),
     });
-    let riddles = document.getElementById('riddles');
-    let block = document.createElement('div');
+    const riddles = document.getElementById('riddles');
+    const block = document.createElement('div');
     block.className = 'block';
-    let riddleElement = document.createElement('div');
+    const riddleElement = document.createElement('div');
     riddleElement.className = 'riddle';
     riddleElement.innerHTML = riddle;
-    let answerElement = document.createElement('div');
+    const answerElement = document.createElement('div');
     answerElement.className = 'answer';
-    let inputElement = document.createElement('input');
+    const inputElement = document.createElement('input');
     inputElement.type = 'text';
     const buttons = document.getElementsByTagName('button');
     const newId = parseInt(buttons.item(buttons.length-2).id)+1;
     inputElement.id = `input-${newId}`;
-    let buttonElement = document.createElement('button');
+    const buttonElement = document.createElement('button');
     buttonElement.id = `${newId}`;
     buttonElement.innerHTML = 'Перевірити';
     riddles.prepend(block);
