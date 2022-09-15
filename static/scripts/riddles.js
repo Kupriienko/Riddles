@@ -6,17 +6,13 @@ window.addEventListener('DOMContentLoaded', async (event) => {
         answer.classList.add(`answer-${data[2]}`);
     }
     for (const input of document.getElementsByTagName('input')) {
-        input.addEventListener('input', input.id !== 'newAnswer' ? () => classReset(input.id) : void(0));
+        input.addEventListener('input',
+            input.id !== 'newAnswer' ? () => input.className = '' : void(0));
     }
     for (const button of document.getElementsByTagName('button')) {
         button.addEventListener('click', button.id !== 'add' ? () => verify(button.id) : addRiddle);
     }
 });
-
-
-async function classReset(id) {
-    document.getElementById(id).className = '';
-}
 
 
 async function verify(id) {
@@ -69,6 +65,6 @@ async function addRiddle() {
     block.appendChild(answerElement);
     answerElement.appendChild(inputElement);
     answerElement.appendChild(buttonElement);
-    inputElement.addEventListener('input', () => classReset(inputElement.id));
+    inputElement.addEventListener('input', () => inputElement.className = '');
     buttonElement.addEventListener('click', () => verify(buttonElement.id));
 }
