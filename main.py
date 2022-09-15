@@ -15,7 +15,7 @@ def add_riddle() -> str:
     riddle = data['riddle'], data['answer']
     cur.execute('insert into riddles (riddle, solution) values (?, ?)', riddle)
     con.commit()
-    return 'true'
+    return str(cur.execute('select id from riddles where riddle = ?', (data['riddle'],)).fetchall()[0][0])
 
 
 @app.route('/verifyAnswer', methods=['GET'])
