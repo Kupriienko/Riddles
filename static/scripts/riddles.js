@@ -6,8 +6,9 @@ window.addEventListener('DOMContentLoaded', async (event) => {
         answer.classList.add(`answer-${data[2]}`);
     }
     for (const input of document.getElementsByTagName('input')) {
-        input.addEventListener('input',
-            input.id !== 'newAnswer' ? () => input.className = '' : void(0));
+        if (input.id !== 'newAnswer') {
+            input.addEventListener('input', () => input.className = '');
+        }
     }
     for (const button of document.getElementsByTagName('button')) {
         button.addEventListener('click', button.id !== 'add' ? () => verify(button.id) : addRiddle);
