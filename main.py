@@ -1,13 +1,16 @@
 from flask import Flask, jsonify, request, Response, abort
 import psycopg2
+import os
+from dotenv import load_dotenv
 
 app = Flask(__name__)
 
+load_dotenv()
 con = psycopg2.connect(
     host='localhost',
     database='riddles.db',
-    user='postgres',
-    password='microsoft123',
+    user=os.getenv('USER'),
+    password=os.getenv('PASSWORD'),
     port=5432
 )
 cur = con.cursor()
