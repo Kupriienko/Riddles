@@ -6,8 +6,8 @@ app = Flask(__name__)
 con = psycopg2.connect(
     host='localhost',
     database='riddles.db',
-    user="postgres",
-    password="microsoft123",
+    user='postgres',
+    password='microsoft123',
     port=5432
 )
 cur = con.cursor()
