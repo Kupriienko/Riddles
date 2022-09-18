@@ -7,11 +7,11 @@ app = Flask(__name__)
 
 load_dotenv()
 con = psycopg2.connect(
-    host='localhost',
-    database='riddles.db',
+    host=os.getenv('HOST'),
+    database=os.getenv('DATABASE'),
     user=os.getenv('USER'),
     password=os.getenv('PASSWORD'),
-    port=5432
+    port=os.getenv('PORT')
 )
 cur = con.cursor()
 
