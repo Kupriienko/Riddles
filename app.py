@@ -9,13 +9,13 @@ print(os.getenv('HOST'))
 print(os.getenv('DATABASE'))
 print(os.getenv('USER'))
 print(os.getenv('PASSWORD'))
-print(os.getenv('PORT'))
+print(os.getenv('DB_PORT'))
 con = psycopg2.connect(
     host=os.getenv('HOST'),
     database=os.getenv('DATABASE'),
     user=os.getenv('USER'),
     password=os.getenv('PASSWORD'),
-    port=os.getenv('PORT')
+    port=os.getenv('DB_PORT')
 )
 cur = con.cursor()
 
