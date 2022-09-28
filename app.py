@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 
 app = Flask(__name__)
 
-load_dotenv()
+
 con = psycopg2.connect(
     host=os.getenv('HOST'),
     database=os.getenv('DATABASE'),
