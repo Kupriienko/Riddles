@@ -1,15 +1,9 @@
 from flask import Flask, jsonify, request, Response, abort
 import psycopg2
 import os
-from dotenv import load_dotenv
 
 app = Flask(__name__)
 
-print(os.getenv('HOST'))
-print(os.getenv('DATABASE'))
-print(os.getenv('USER'))
-print(os.getenv('PASSWORD'))
-print(os.getenv('DB_PORT'))
 con = psycopg2.connect(
     host=os.getenv('HOST'),
     database=os.getenv('DATABASE'),

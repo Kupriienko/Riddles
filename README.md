@@ -1,1 +1,1 @@
-This is a site where you can guess the riddles of other users and even add your own. You can test it at this link: https://kupriienko.github.io/Riddles/
+This is a site where you can guess the riddles of other users and even add your own. You can test it at this link: https://guess-riddle.herokuapp.com/
